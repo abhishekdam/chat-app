@@ -33,7 +33,13 @@ function Chat() {
         </div>
       </div>
       {/* all the chats */}
-      <div className="chat_body"></div>
+      <div className="chat_body">
+        <p className={`chat_message ${true && "chat_reciever"}`}>
+          <span className="chat_name">Aakash Chahal</span>
+          Hey guys
+          <span className="chat_timestamp">10:30 pm</span>
+        </p>
+      </div>
       {/* the chat footer containing the text box and the send button */}
       <div className="chat_footer"></div>
     </div>
