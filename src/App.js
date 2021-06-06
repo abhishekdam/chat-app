@@ -1,6 +1,7 @@
 import "./App.css";
 import Chat from "./components/Chat";
 import Sidebar from "./components/Sidebar";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function App() {
   return (
@@ -8,10 +9,19 @@ function App() {
     <div className="App">
       {/* Floating App body */}
       <div className="app_body">
-        {/* Sidebar */}
-        <Sidebar></Sidebar>
-        {/* Chat */}
-        <Chat></Chat>
+        <Router>
+          {/* Sidebar */}
+          <Sidebar></Sidebar>
+          <Switch>
+            <Route path="/rooms/:roomId">
+              {/* Chat */}
+              <Chat></Chat>
+            </Route>
+            <Route path="/">
+              <Chat></Chat>
+            </Route>
+          </Switch>
+        </Router>
       </div>
     </div>
   );
