@@ -1,36 +1,33 @@
-import "./App.css";
-import { useState } from "react";
-import Chat from "./components/Chat";
-import Sidebar from "./components/Sidebar";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Login from "./components/Login";
+import './App.css';
+import React, {useState} from 'react';
+import Sidebar from './Sidebar';
+import Chat from './Chat';
+import Login from './Login';
+import { BrowserRouter as Router,Switch, Route} from 'react-router-dom';
+import {useStateValue} from './StateProvider';
 
 function App() {
-  const [user, setUser] = useState(null);
-
+  const [{user}, dispatch] = useStateValue();
   return (
-    // BEM naming convention (Block Element Modifier methedology)
-    <div className="App">
-      {!user ? (
-        <h1>
-          <Login></Login>
-        </h1>
-      ) : (
-        <div className="app_body">
-          <Router>
-            {/* Sidebar */}
-            <Sidebar></Sidebar>
-            <Switch>
-              <Route path="/rooms/:roomId">
-                <Chat></Chat>
-              </Route>
-              <Route path="/">
-                <Chat></Chat>
-              </Route>
-            </Switch>
-          </Router>
-        </div>
-      )}
+    <div className="app">
+        {!user ? (
+          <Login/>
+        ):(
+          <div className="app_body">
+            <Router>
+              <Sidebar/>
+              <Switch>
+                <Route path="/rooms/:roomId">
+                  <Chat/>
+                </Route>
+                <Route path="/">
+                  <Chat/>
+                </Route>              
+              </Switch>            
+            </Router>
+          </div>
+        )}
+        
     </div>
   );
 }
